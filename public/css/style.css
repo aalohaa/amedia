@@ -1,0 +1,18 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-image: url('/public/images/main_bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+header a{
+    color: #FAFAFB;
+    text-decoration: none;
+}
+
+header {
+    color: #FAFAFB;
+}
