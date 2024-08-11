@@ -1,7 +1,7 @@
 body {
     padding: 0;
     margin: 0;
-    background-image: url('/public/images/main_bg.png');
+    background-image: url('/public/images/main_bg_blur.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -15,4 +15,60 @@ header a{
 
 header {
     color: #FAFAFB;
+}
+
+.nav-bar a {
+    transition: 0.3s;
+}
+
+.nav-bar a:hover {
+    color: #b3b3b3;
+}
+
+#lang-data {
+    cursor: pointer;
+    position: relative;
+}
+
+.lang-dropdown-content {
+    position: absolute;
+    top: 35px;
+    right: 0px;
+    display: none;
+}
+
+.lang-dropdown-content .divider {
+    background-color: #b3b3b3;
+    height: 1px;
+    margin: 9px 0;
+}
+
+.lang-dropdown-content ul{
+    list-style: none;
+}
+
+.lang-dropdown-content li:not(.divider) {
+    padding: 4px;
+    text-align: center;
+}
+
+.lang-dropdown-content li {
+    transition: 0.3s;
+}
+
+.lang-dropdown-content li:hover{
+    background-color: #d6d6d6;
+    color: #000;
+}
+
+.lr-profile a:hover{
+    text-decoration: underline;
+}
+
+.lr-profile span {
+    transition: 0.3s;
+}
+
+.lr-profile span:hover {
+    color: #b3b3b3;
 }

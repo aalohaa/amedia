@@ -10,8 +10,9 @@
 </head>
 
 <body>
+    <div class="background"></div>
 
-    <header class="d-flex align-items-center justify-content-around w-100">
+    <header class="d-flex justify-content-around w-100">
         <div class="logo">
             <a href="/"><img src="/public/images/logo.png" alt="" width="300"></a>
         </div>
@@ -34,32 +35,46 @@
             <div class="facebook">
                 <a href=""><img src="/public/images/facebook_icon.png" alt=""></a>
             </div>
-            <div class="lng-dropdown-content">
-                <ul>
-                    <li>KZ</li>
-                    <li>RU</li>
-                    <li>ENG</li>
-                </ul>
-                <span class="material-symbols-outlined">
-                    arrow_downward
-                </span>
+            <div class="d-flex gap-2 lang-data" id="lang-data">
+                <div class="lang">
+                    KZ
+                </div>
+                <div class="lang-arrow">
+                    <img src="/public/images/arrow.png" alt="">
+                </div>
+                <div class="lang-dropdown-content">
+                    <ul>
+                        <li>KZ</li>
+                        <li class="divider"></li>
+                        <li>RU</li>
+                        <li class="divider"></li>
+                        <li>ENG</li>
+                    </ul>
+                </div>
             </div>
         </div>
+        
 
         <div class="lr-profile d-flex align-items-center">
             <a href="">Login</a>
             <span>/</span>
             <a href="">Register</a>
-            <div class="profile pt-1">
-            <a href=""><span class="material-symbols-outlined">
-                    person
-                </span></a>
+            <div class="profile ms-1 mt-2">
+                <a href=""><span class="material-symbols-outlined">
+                        person
+                    </span></a>
             </div>
         </div>
     </header>
     <main></main>
     <footer></footer>
 
+
+    <script>
+        $('#lang-data').on('click', () => {
+            $('.lang-dropdown-content').slideToggle(300)
+        })
+    </script>
 </body>
 
 </html>
