@@ -8,7 +8,26 @@ body {
     background-position: center;
 }
 
-header a{
+@keyframes spinner-border {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner-border {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    vertical-align: text-bottom;
+    border: .20px solid currentColor;
+    border-right-color: currentcolor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    -webkit-animation: spinner-border .75s linear infinite;
+    animation: spinner-border .75s linear infinite;
+}
+
+header a {
     color: #FAFAFB;
     text-decoration: none;
 }
@@ -43,7 +62,7 @@ header {
     margin: 9px 0;
 }
 
-.lang-dropdown-content ul{
+.lang-dropdown-content ul {
     list-style: none;
 }
 
@@ -56,12 +75,19 @@ header {
     transition: 0.3s;
 }
 
-.lang-dropdown-content li:hover{
+.lang-dropdown-content li:hover {
     background-color: #d6d6d6;
     color: #000;
 }
 
-.lr-profile a:hover{
+.lr-profile button { 
+    background-color: transparent;
+    color: #FAFAFB;
+    border: none;
+    outline: none;
+}
+
+.lr-profile button:hover {
     text-decoration: underline;
 }
 
@@ -71,4 +97,85 @@ header {
 
 .lr-profile span:hover {
     color: #b3b3b3;
+}
+
+.sign-up-modal {
+    background-color: #090808;
+    color: #FAFAFB;
+}
+
+.sign-up-modal .modal-header,
+.sign-up-modal .modal-body,
+.sign-up-modal .modal-footer {
+    border: none;
+}
+
+.sign-up-modal input {
+    background-color: #272727;
+    border: none;
+}
+
+.sign-up-modal .google-sign-in {
+    background-color: #272727;
+    color: #FAFAFB;
+    border-radius: 12px;
+    width: 85%;
+    padding: 8px 0;
+    text-decoration: none;
+    position: relative;
+    transition: 0.3s;
+}
+
+.sign-up-modal .google-sign-in::before {
+    content: '';
+    z-index: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 42px;
+    height: 42px;
+    background-color: #FAFAFB;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.sign-up-modal .google-sign-in:hover {
+    background-color: #333333;
+    
+}
+
+.sign-up-modal .google-sign-in:hover::before {
+    background-color: #e1e1e1;
+    
+}
+
+.sign-up-modal .google-icon {
+    z-index: 1;
+    flex: 0.5;
+    padding: 0 0 0 8px;
+}
+
+.sign-up-modal .register-btn {
+    border-radius: 12px;
+    width: 85%;
+    padding: 8px 0;
+}
+
+.sign-up-modal .have-account button{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+}
+
+.sign-up-modal .su-email,
+.sign-up-modal .su-password {
+    width: 85%;
+    margin: auto;
+}
+
+.sign-up-modal .su-fname,
+.sign-up-modal .su-lname {
+    width: 35%;
+    margin: auto;
 }

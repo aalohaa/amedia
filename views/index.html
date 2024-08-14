@@ -53,12 +53,12 @@
                 </div>
             </div>
         </div>
-        
+
 
         <div class="lr-profile d-flex align-items-center">
-            <a href="">Login</a>
+            <button onclick="showSignInModal()">Login</button>
             <span>/</span>
-            <a href="">Register</a>
+            <button onclick="showSignUpModal()">Register</button>
             <div class="profile ms-1 mt-2">
                 <a href=""><span class="material-symbols-outlined">
                         person
@@ -69,11 +69,74 @@
     <main></main>
     <footer></footer>
 
+    <!-- MODALS -->
+    <div class="modal fade" id="sign_up-modal">
+        <div class="modal-dialog">
+            <div class="modal-content sign-up-modal">
+                <div class="modal-header">
+                    <h4 class="modal-title">Register</h4>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form autocomplete="off">
+                        <div class="d-flex align-items-center justify-content-around">
+                            <div class="mb-3 mt-2 su-fname">
+                                <label class="mb-2">First name</label>
+                                <input type="text" class="form-control" id="first_name">
+                            </div>
+                            <div class="mb-3 mt-2 su-lname">
+                                <label class="mb-2">Last name</label>
+                                <input type="text" class="form-control" id="last_name">
+                            </div>
+                        </div>
+                        <div class="mb-3 mt-3 su-email">
+                            <label class="mb-2 ">Email</label>
+                            <input type="text" class="form-control" id="email">
+                        </div>
+                        <div class="mb-3 mt-3 su-password">
+                            <label class="mb-2">Password</label>
+                            <input type="text" class="form-control" id="password">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer d-flex flex-column align-items-center gap-3"> 
+                    <button type="button" id="sign_up_btn" class="btn btn-primary register-btn"
+                        onclick="">Register</button>
+                    <a href="" class="google-sign-in">
+                        <div class="d-flex align-items-center google-sign-in-btn">
+                            <div class="google-icon">
+                                <img src="../public/images/google_icon.png" alt="" width="24">
+                            </div>
+                            <div class="google-text">
+                                Sign in
+                            </div>
+                        </div>
+                    </a>
+                    <div class="have-account">
+                        <button>Have an account?</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
+        $(document).ready(()=> {
+            loading(1);
+            loading(0);
+        })
+
         $('#lang-data').on('click', () => {
             $('.lang-dropdown-content').slideToggle(300)
         })
+
+        function showSignUpModal() {
+            $('#sign_up-modal').modal('show');
+        }
+
+        function showSignInModal() {
+
+        }
     </script>
 </body>
 
