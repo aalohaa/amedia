@@ -80,15 +80,16 @@ header {
     color: #000;
 }
 
-.lr-profile button { 
+.lr-profile button {
     background-color: transparent;
     color: #FAFAFB;
     border: none;
     outline: none;
+    transition: 0.3s;
 }
 
 .lr-profile button:hover {
-    text-decoration: underline;
+    color: #b3b3b3;
 }
 
 .lr-profile span {
@@ -99,34 +100,36 @@ header {
     color: #b3b3b3;
 }
 
-.sign-up-modal {
+.auth-modal {
     background-color: #090808;
     color: #FAFAFB;
 }
 
-.sign-up-modal .modal-header,
-.sign-up-modal .modal-body,
-.sign-up-modal .modal-footer {
+.auth-modal .modal-header,
+.auth-modal .modal-body,
+.auth-modal .modal-footer {
     border: none;
 }
 
-.sign-up-modal input {
+.auth-modal input {
     background-color: #272727;
     border: none;
+    color: #FAFAFB;
+    transition: 0.3s;
 }
 
-.sign-up-modal .google-sign-in {
+.auth-modal .google-sign-in {
     background-color: #272727;
     color: #FAFAFB;
     border-radius: 12px;
-    width: 85%;
+    width: 83%;
     padding: 8px 0;
     text-decoration: none;
     position: relative;
     transition: 0.3s;
 }
 
-.sign-up-modal .google-sign-in::before {
+.auth-modal .google-sign-in::before {
     content: '';
     z-index: 0;
     position: absolute;
@@ -139,43 +142,75 @@ header {
     transition: 0.3s;
 }
 
-.sign-up-modal .google-sign-in:hover {
+.auth-modal .google-sign-in:hover {
     background-color: #333333;
-    
+
 }
 
-.sign-up-modal .google-sign-in:hover::before {
+.auth-modal .google-sign-in:hover::before {
     background-color: #e1e1e1;
-    
+
 }
 
-.sign-up-modal .google-icon {
+.auth-modal .google-icon {
     z-index: 1;
     flex: 0.5;
     padding: 0 0 0 8px;
 }
 
-.sign-up-modal .register-btn {
+.auth-modal .register-btn {
     border-radius: 12px;
-    width: 85%;
+    width: 83%;
     padding: 8px 0;
 }
 
-.sign-up-modal .have-account button{
+.auth-modal .have-account button {
     background-color: transparent;
     border: none;
     outline: none;
     color: #FFFFFF;
+    transition: 0.3s;
 }
 
-.sign-up-modal .su-email,
-.sign-up-modal .su-password {
+.auth-modal .su-email,
+.auth-modal .su-password {
     width: 85%;
     margin: auto;
 }
 
-.sign-up-modal .su-fname,
-.sign-up-modal .su-lname {
+.auth-modal .su-fname,
+.auth-modal .su-lname {
     width: 35%;
     margin: auto;
+}
+
+.auth-modal input:focus {
+    color: #FAFAFB;
+    box-shadow: 0 0 15px 1px #b3b3b3;
+    background-color: #272727 !important;
+}
+
+.auth-modal .have-account button:hover {
+    color: #b3b3b3;
+}
+
+.auth-modal .register-forgot button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+    transition: 0.3s;
+}
+
+.auth-modal .register-forgot button:hover {
+    color: #b3b3b3;
+}
+
+.auth-modal .register-forgot .forgot-btn {
+    width: 65%;
+    padding-right: 22px;
+}
+
+.auth-modal .register-forgot .register-btn {
+    padding-left: 28px;
 }
