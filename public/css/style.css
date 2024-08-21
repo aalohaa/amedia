@@ -64,20 +64,69 @@ header {
 
 .lang-dropdown-content ul {
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .lang-dropdown-content li:not(.divider) {
-    padding: 4px;
+    padding: 6px 8px;
     text-align: center;
+    border-radius: 5px;
 }
 
 .lang-dropdown-content li {
     transition: 0.3s;
 }
 
-.lang-dropdown-content li:hover {
-    background-color: #d6d6d6;
-    color: #000;
+.lang-dropdown-content li:not(.divider):hover {
+    background-color: #b3b3b363;;
+    color: #FAFAFB;
+}
+
+.profile {
+    position: relative;
+    cursor: pointer;
+}
+
+.profile-dropdown-content {
+    position: absolute;
+    top: 35px;
+    left: 0;
+    display: none;
+}
+
+.profile-dropdown-content ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.profile-dropdown-content li:not(.divider) {
+    padding: 6px 8px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.profile-dropdown-content .divider {
+    background-color: #b3b3b3;
+    height: 1px;
+    margin: 9px 0;
+}
+
+.profile-dropdown-content a {
+    color: #FAFAFB;
+}
+
+.profile-dropdown-content li {
+    transition: 0.3s;
+}
+
+.profile-dropdown-content li:not(.divider):hover {
+    background-color: #b3b3b363;
+}
+
+.profile-dropdown-content li:nth-child(2) {
+    padding-right: 82px;
 }
 
 .lr-profile button {

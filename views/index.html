@@ -57,22 +57,33 @@
 
         <div class="lr-profile d-flex align-items-center">
             <% if (isAuth) { %>
-                <div class="profile d-flex align-items-center">
+                <div class="profile d-flex align-items-center" id="profile">
                     <span>
                         <%= first_name %>
                     </span>
                     <span class="material-symbols-outlined">
                         person
                     </span>
+                    <div class="profile-dropdown-content">
+                        <ul>
+                            <li>
+                                <a href="">PROFILE</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="auth/logout">LOG OUT</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <% } else { %>
                     <button onclick="showSignInModal()">Login</button>
                     <span>/</span>
                     <button onclick="showSignUpModal()">Register</button>
-                    <div class="profile ms-1 mt-2">
-                        <a href=""><span class="material-symbols-outlined">
-                                person
-                            </span></a>
+                    <div class="profile ms-1 mt-2" id="profile">
+                        <span class="material-symbols-outlined">
+                            person
+                        </span>
                     </div>
                     <% } %>
         </div>
@@ -190,6 +201,10 @@
             $('.lang-dropdown-content').slideToggle(300)
         })
 
+        $('#profile').on('click', () => {
+            $('.profile-dropdown-content').slideToggle(300)
+        })
+
         function showSignUpModal() {
             $('#sign_in-modal').modal('hide');
             $('#sign_up-modal').modal('show');
@@ -210,7 +225,7 @@
                 $.ambiance({
                     message: "Fill in all required fields!",
                     type: "error",
-                    fade: false
+                    fade: true
                 });
                 return;
             }
@@ -231,9 +246,11 @@
                             type: "success",
                             fade: true
                         });
-                        window.location.reload();
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 1000);
                     }
-                    else if(r.r == 2) {
+                    else if (r.r == 2) {
                         $.ambiance({
                             message: "Too many requests, try later!",
                             type: "error",
@@ -262,12 +279,12 @@
             let password = $('#su_password').val().trim();
             let repassword = $('#re_password').val().trim();
 
-            if (!email || !password) {
+            if (!email || !password || !fname || !lname) {
                 loading(20, el = '#sign_up_btn');
                 $.ambiance({
-                    message: "Fill in email and password fields!",
+                    message: "Fill in all required fields!",
                     type: "error",
-                    fade: false
+                    fade: true
                 });
                 return;
             }
@@ -276,7 +293,7 @@
                 $.ambiance({
                     message: "Passwords do not match!",
                     type: "error",
-                    fade: false
+                    fade: true
                 });
                 return;
             }
@@ -292,28 +309,23 @@
                 },
                 success: function (r) {
                     if (r.r == 1) {
+                        $('#sign_up-modal').modal('hide');
+                        loading(20, el = '#sign_up_btn');
                         $.ambiance({
                             message: "You are successfully signed up!",
-                            title: "Success!",
-                            type: "success"
+                            type: "success",
+                            fade: true
                         });
-                        $('.lr-profile').html(`
-                    <div class="profile d-flex align-items-center">
-                        <span>${r.first_name}</span>
-                        <span class="material-symbols-outlined">
-                            person
-                        </span>
-                        
-                    </div>
-                `);
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 1000);
                     } else {
                         $.ambiance({
                             message: "Something went wrong!",
                             type: "error",
-                            fade: false
+                            fade: true
                         });
                     }
-                    $('#sign_up-modal').modal('hide');
                     loading(20, el = '#sign_up_btn');
                 }, error: function (err) {
                     loading(20, el = '#sign_up_btn');

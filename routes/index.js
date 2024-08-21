@@ -7,13 +7,10 @@ router.get('/', (req, res) => {
             first_name: req.session.first_name,
             isAuth: true
         }) 
-        console.log(req.session.first_name);
     } else {
         res.render('index', {
             isAuth: false
-        })
-        console.log(req.session.first_name);
-        
+        })        
     }
 })
 
