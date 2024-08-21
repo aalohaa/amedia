@@ -56,14 +56,25 @@
 
 
         <div class="lr-profile d-flex align-items-center">
-            <button onclick="showSignInModal()">Login</button>
-            <span>/</span>
-            <button onclick="showSignUpModal()">Register</button>
-            <div class="profile ms-1 mt-2">
-                <a href=""><span class="material-symbols-outlined">
+            <% if (isAuth) { %>
+                <div class="profile d-flex align-items-center">
+                    <span>
+                        <%= first_name %>
+                    </span>
+                    <span class="material-symbols-outlined">
                         person
-                    </span></a>
-            </div>
+                    </span>
+                </div>
+                <% } else { %>
+                    <button onclick="showSignInModal()">Login</button>
+                    <span>/</span>
+                    <button onclick="showSignUpModal()">Register</button>
+                    <div class="profile ms-1 mt-2">
+                        <a href=""><span class="material-symbols-outlined">
+                                person
+                            </span></a>
+                    </div>
+                    <% } %>
         </div>
     </header>
     <main></main>
@@ -213,33 +224,31 @@
                 },
                 success: function (r) {
                     if (r.r == 1) {
+                        $('#sign_in-modal').modal('hide');
+                        loading(20, el = '#sign_in_btn');
                         $.ambiance({
                             message: "You are successfully logged in!",
-                            title: "Success!",
-                            type: "success"
+                            type: "success",
+                            fade: true
                         });
-                        console.log(r);
-
-                        $('.lr-profile').html(`
-                        <div class="profile d-flex align-items-center">
-                            <span>${r.first_name}</span>
-                            <span class="material-symbols-outlined">
-                                person
-                                </span>
-                    </div>
-                `);
+                        window.location.reload();
+                    }
+                    else if(r.r == 2) {
+                        $.ambiance({
+                            message: "Too many requests, try later!",
+                            type: "error",
+                            fade: true
+                        });
                     }
                     else {
                         $.ambiance({
                             message: "Something went wrong!",
                             type: "error",
-                            fade: false
+                            fade: true
                         });
                     }
-                    $('#sign_in-modal').modal('hide');
                     loading(20, el = '#sign_in_btn');
                 }, error: function (err) {
-                    loading(20, el = '#sign_in_btn');
                     console.log(err);
                 }
             })

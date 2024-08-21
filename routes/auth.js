@@ -23,10 +23,14 @@ router.post('/sign-up', async (req, res) => {
             email: email
         }).then(() => {
             r['r'] = 1;
-            r['first_name'] = first_name;
+            req.session.first_name = first_name;
+            req.session.isAuth = true;
             res.send(r);
         }).catch((e) => {
             console.log(e);
+            if (e.code == 'auth/too-many-requests') {
+                r['r'] = 2
+            }
             res.send(r);
         })
     })
@@ -41,11 +45,15 @@ router.post('/sign-in', async (req, res) => {
     await fauth.signInWithEmailAndPassword(fauth.getAuth(), email, password).then(async(userCredential) =>{
         await fdb.collection('users').doc(userCredential.user.uid).get().then((userDoc)=> {
             r['r'] = 1;
-            r['first_name'] = userDoc.data().first_name;
+            req.session.first_name = userDoc.data().first_name;
+            req.session.isAuth = true;
             res.send(r);
         })
     }).catch((e)=>{
         console.log(e);
+        if (e.code == 'auth/too-many-requests') {
+            r['r'] = 2
+        }
         res.send(r);
     })
 })
