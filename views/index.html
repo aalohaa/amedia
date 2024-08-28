@@ -168,7 +168,7 @@
                                 <button type="button" onclick="showSignUpModal()">Register</button>
                             </div>
                             <div class="forgot-btn">
-                                <button>Forgot your password?</button>
+                                <button type="button" onclick="showResetPasswordModal()">Forgot your password?</button>
                             </div>
                         </div>
                     </form>
@@ -186,6 +186,30 @@
                             </div>
                         </div>
                     </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="reset_password-modal">
+        <div class="modal-dialog">
+            <div class="modal-content auth-modal">
+                <div class="modal-header">
+                    <h4 class="modal-title">Reset password</h4>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form autocomplete="off">
+                        <div class="mb-3 mt-3 su-email">
+                            <label class="mb-2 ">Email</label>
+                            <input type="text" class="form-control form-inp" id="res_email">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer d-flex flex-column align-items-center gap-3">
+                    <button type="button" id="reset_password_btn" class="btn btn-primary register-btn"
+                        onclick="resetPassword()">Reset
+                        password</button>
                 </div>
             </div>
         </div>
@@ -213,6 +237,11 @@
         function showSignInModal() {
             $('#sign_up-modal').modal('hide');
             $('#sign_in-modal').modal('show');
+        }
+
+        function showResetPasswordModal() {
+            $('#sign_in-modal').modal('hide');
+            $('#reset_password-modal').modal('show');
         }
 
         function signIn() {
@@ -319,7 +348,22 @@
                         setTimeout(() => {
                             window.location.reload();
                         }, 1000);
-                    } else {
+                    }
+                    else if (r.r == 2) {
+                        $.ambiance({
+                            message: "Too many requests, try later!",
+                            type: "error",
+                            fade: true
+                        });
+                    }
+                    else if (r.r == 3) {
+                        $.ambiance({
+                            message: "Email already exists!",
+                            type: "error",
+                            fade: true
+                        });
+                    }
+                    else {
                         $.ambiance({
                             message: "Something went wrong!",
                             type: "error",
@@ -332,6 +376,53 @@
                     console.log(err);
                 }
             });
+        }
+
+        function resetPassword() {
+            loading(2, el = '#reset_password_btn');
+            let email = $('#res_email').val().trim().toLowerCase();
+
+            if (!email) {
+                loading(20, el = '#reset_password_btn');
+                $.ambiance({
+                    message: "Fill in email field, please!",
+                    type: "error",
+                    fade: true
+                });
+                return;
+            }
+
+            $.ajax({
+                method: 'post',
+                url: '/auth/reset-password',
+                data: {
+                    email: email
+                },
+                success: function (r) {
+                    if (r.r == 1) {
+                        $('#reset_password-modal').modal('hide');
+                        loading(20, el = '#reset_password_btn');
+                        $.ambiance({
+                            message: "Reset password email successfully sent!",
+                            type: "success",
+                            fade: true
+                        });
+                        setTimeout(() => {
+                            showSignInModal();
+                        }, 1000);
+                    } else {
+                        $.ambiance({
+                            message: "Something went wrong!",
+                            type: "error",
+                            fade: true
+                        });
+                    }
+                    loading(20, el = '#reset_password_btn');
+                }, error: function (err) {
+                    loading(20, el = '#reset_password_btn')
+                    console.log(err);
+                }
+            })
         }
     </script>
 </body>
