@@ -1,3 +1,8 @@
+@font-face {
+    font-family: Sen;
+    src: url(../fonts/Sen-VariableFont_wght.ttf);
+}
+
 body {
     padding: 0;
     margin: 0;
@@ -30,6 +35,7 @@ body {
 header a {
     color: #FAFAFB;
     text-decoration: none;
+    font-family: Sen;
 }
 
 header {
@@ -47,6 +53,7 @@ header {
 #lang-data {
     cursor: pointer;
     position: relative;
+    font-family: Sen;
 }
 
 .lang-dropdown-content {
@@ -83,6 +90,10 @@ header {
     color: #FAFAFB;
 }
 
+.lr-profile {
+    font-family: Sen;
+}
+
 .profile {
     position: relative;
     cursor: pointer;
@@ -102,7 +113,7 @@ header {
 }
 
 .profile-dropdown-content li:not(.divider) {
-    padding: 6px 8px;
+    padding: 6px;
     border-radius: 5px;
     text-align: center;
 }
@@ -263,3 +274,9 @@ header {
 .auth-modal .register-forgot .register-btn {
     padding-left: 28px;
 }
+
+/* MEDIA PLAYER START */
+
+
+
+/* MEDIA PLAYER END */

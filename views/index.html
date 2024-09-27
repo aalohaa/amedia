@@ -88,7 +88,125 @@
                     <% } %>
         </div>
     </header>
-    <main></main>
+    <main>
+        <div class="player-block">
+            <div class="player-header">
+                <div class="arrow-toggle" id="arrow_toggle">
+                    <span class="material-symbols-outlined" style="color: #fff; font-size: 50px;">
+                        keyboard_arrow_up
+                    </span>
+                </div>
+            </div>
+
+            <div class="player-body">
+                <div class="playlist-photo">
+                    <img src="" alt="">
+                </div>
+                <div class="playlist-info">
+                    <div class="playlist-title">
+                        <p>Dear Leylim</p>
+                    </div>
+                    <div class="music-artist">
+                        <p>Dos-Mukasan</p>
+                    </div>
+                </div>
+
+                <div class="music-sound">
+                    <div class="music-volume">
+
+                    </div>
+                    <div class="music-mute-toggle">
+                        <span class="material-symbols-outlined" style="color: #fff; font-size: 30px;">
+                            volume_off
+                        </span>
+                    </div>
+                </div>
+
+                <div class="media-player">
+                    <div class="studio-name">
+                        <p>K-MEDIA RECORDS</p>
+                    </div>
+                    <div class="fast-rewind">
+                        <div class="back-arrow">
+                            <span class="material-symbols-outlined" style="color: #fff; font-size: 30px;">
+                                fast_rewind
+                            </span>
+                        </div>
+                        <div class="seconds">
+                            <p>15s</p>
+                        </div>
+                    </div>
+
+                    <div class="music-pause">
+                        <span class="material-symbols-outlined" style="color: #fff; font-size: 30px;">
+                            pause
+                        </span>
+                    </div>
+
+                    <div class="fast-forward">
+                        <div class="forward-arrow">
+                            <span class="material-symbols-outlined" style="color: #fff; font-size: 30px;">
+                                fast_forward
+                            </span>
+                        </div>
+                        <div class="seconds">
+                            <p>15s</p>
+                        </div>
+                    </div>
+
+                    <div class="media-timing">
+                        <p>00:00 / 02:24</p>
+                    </div>
+
+                    <div class="playlist-songs-toggle">
+                        <span class="material-symbols-outlined" style="color: #fff; font-size: 30px;">
+                            playlist_play
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="player-footer">
+                <div class="songs-list">
+                    <div class="song">
+                        <div class="song-query">
+                            <p>1</p>
+                        </div>
+                        <div class="song-title">
+                            <p>My Joy</p>
+                        </div>
+                        <div class="song-duration">
+                            02:57
+                        </div>
+                    </div>
+
+                    <div class="song"></div>
+                        <div class="song-query">
+                            <p>2</p>
+                        </div>
+                        <div class="song-title">
+                            <p>16 Girls</p>
+                        </div>
+                        <div class="song-duration">
+                            03:09
+                        </div>
+                    </div>
+
+                    <div class="song"></div>
+                        <div class="song-query">
+                            <p>3</p>
+                        </div>
+                        <div class="song-title">
+                            <p>My Jentle</p>
+                        </div>
+                        <div class="song-duration">
+                            03:52
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
     <footer></footer>
 
     <!-- MODALS -->
@@ -128,7 +246,7 @@
                 <div class="modal-footer d-flex flex-column align-items-center gap-3">
                     <button type="button" id="sign_up_btn" class="btn btn-primary register-btn"
                         onclick="signUp()">Register</button>
-                    <a href="" class="google-sign-in">
+                    <a href="/auth/google_sign_up" class="google-sign-in">
                         <div class="d-flex align-items-center google-sign-in-btn">
                             <div class="google-icon">
                                 <img src="../public/images/google_icon.png" alt="" width="24">
@@ -176,7 +294,7 @@
                 <div class="modal-footer d-flex flex-column align-items-center gap-3">
                     <button type="button" id="sign_in_btn" class="btn btn-primary register-btn" onclick="signIn()">Log
                         in</button>
-                    <a href="" class="google-sign-in">
+                    <a href="/auth/google_sign_in" class="google-sign-in">
                         <div class="d-flex align-items-center google-sign-in-btn">
                             <div class="google-icon">
                                 <img src="../public/images/google_icon.png" alt="" width="24">
@@ -218,6 +336,8 @@
     <script>
         $(document).ready(() => {
             loading(1);
+            handleGoogleSignInFailure();
+            handleGoogleSignUpFailure();
             loading(0);
         })
 
@@ -423,6 +543,46 @@
                     console.log(err);
                 }
             })
+        }
+
+        function handleGoogleSignInFailure() {
+            let currentUrl = window.location.href;
+
+            if (currentUrl.includes('status=0')) {
+                $.ambiance({
+                    message: "Something went wrong!",
+                    type: "error",
+                    fade: true
+                });
+
+                currentUrl = currentUrl.replace('?status=0', '');
+                window.history.replaceState(null, '', currentUrl);
+            }
+        }
+
+
+        function handleGoogleSignUpFailure() {
+            let currentUrl = window.location.href;
+
+            if (currentUrl.includes('status=1')) {
+                $.ambiance({
+                    message: "Something went wrong!",
+                    type: "error",
+                    fade: true
+                });
+                currentUrl = currentUrl.replace('?status=1', '');
+                window.history.replaceState(null, '', currentUrl);
+            }
+
+            else if (currentUrl.includes('status=2')) {
+                $.ambiance({
+                    message: "Email address already in use!",
+                    type: "error",
+                    fade: true
+                });
+                currentUrl = currentUrl.replace('?status=2', '');
+                window.history.replaceState(null, '', currentUrl);
+            }
         }
     </script>
 </body>
